@@ -154,12 +154,14 @@ contract Test {
 }
 ```
 
-Given the code above, the following is a rough summary of what the EVM needs to do when calling `aPlusOne()`.
+Given the code above, the following is a rough summary of what the corresponding opcodes will tell the EVM to do when `aPlusOne()` is called.
 
-1. Figure out where exactly in storage `a` is.
-2. Load the value of `a` and move it from storage into memory.
-3. Load the value of `1` into memory, since that is the number we're trying to add.
-4. Ensure that the value of `a` and `1` are in a very specific location in memory so that the subsequent operation is carried out correctly.
-5. Carry out the addition operation.
+**NOTE:** The EVM is a stack-based machine. This means that a [stack](https://en.wikipedia.org/wiki/Stack\_\(abstract\_data\_type\)) is the primary data structure used for handling low-level instructions (opcodes) in a sequential, [LIFO](../../glossary.md) order.
+
+1. Determine the storage location of `a`.
+2. Load the value of `a` onto the stack.
+3. Push the value of `1` onto the stack.
+4. Ensure the values of `a` and `1` are correctly positioned on the stack.
+5. Execute the addition operation.
 
 ...
