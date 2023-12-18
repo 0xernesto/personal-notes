@@ -92,7 +92,7 @@ Each 256-bit key in the key-value storage model is referred to as a "slot". Ever
 
 To better understand the nature of storage slots, let's use some code. The smart contract below contains one state variable, `a`, and a function that returns the storage slot of `a`.
 
-Note that we use an [inline assembly](https://app.gitbook.com/s/ENMzpj8ev3TK0p2I8vAV/) block to fetch the storage slot of variable `a`.
+Note that we use an [inline assembly (Yul)](https://docs.soliditylang.org/en/latest/yul.html) block to fetch the storage slot of variable `a`.
 
 ```solidity
 contract Storage {
@@ -142,7 +142,9 @@ For a more in-depth understanding of storage, checkout [Alchemy's storage layout
 
 ## <mark style="color:purple;">Opcodes</mark>
 
-To understand what opcodes are, let's consider the smart contract below. From a semantic perspective, the language of the Solidity code is very straight forward. However, this language is extremely foreign to a computer. <mark style="color:yellow;">Since the EVM is a computer, we need to translate the Solidity code to a language that the EVM can understand. The EVM understands assembly code, which is a set of highly specific and concise instructions designed to carry out specific tasks. These instructions are called opcodes.</mark>
+To understand what opcodes are, let's consider the smart contract below. From a semantic perspective, the language of the Solidity code is very straight forward. However, this language is extremely foreign to a computer. <mark style="color:yellow;">Since the EVM is a computer, we need to translate the Solidity code to a language that the EVM can understand by compiling the Solidity code. The EVM understands assembly code, which is a set of highly specific and concise instructions designed to carry out specific tasks. These instructions are called opcodes.</mark>
+
+**NOTE:** The EVM is a stack-based machine. This means that a [stack](https://en.wikipedia.org/wiki/Stack\_\(abstract\_data\_type\)) is the primary data structure used for handling low-level instructions (opcodes) in a sequential, [LIFO](../../glossary.md) order.
 
 ```solidity
 contract Test {
@@ -154,14 +156,16 @@ contract Test {
 }
 ```
 
-Given the code above, the following is a rough summary of what the corresponding opcodes will tell the EVM to do when `aPlusOne()` is called.
+Given the code above, the following is a simplified breakdown of the most relevant opcodes that will execute on the EVM when `aPlusOne()` is called.
 
-**NOTE:** The EVM is a stack-based machine. This means that a [stack](https://en.wikipedia.org/wiki/Stack\_\(abstract\_data\_type\)) is the primary data structure used for handling low-level instructions (opcodes) in a sequential, [LIFO](../../glossary.md) order.
+<table><thead><tr><th width="136">Opcode</th><th width="254">Description</th><th width="125">Stack State</th></tr></thead><tbody><tr><td><code>PUSH1 00</code></td><td>Push <code>0</code> onto the stack.</td><td>0</td></tr><tr><td><code>SLOAD</code></td><td>Treat <code>0</code> as a storage slot and load the corresponding value.</td><td>3</td></tr><tr><td><code>PUSH1 01</code></td><td>Push <code>1</code> onto the stack.</td><td>1<br>3</td></tr><tr><td><code>ADD</code></td><td>Add <code>1</code> and <code>3</code>.</td><td>4</td></tr></tbody></table>
 
-1. Determine the storage location of `a`.
-2. Load the value of `a` onto the stack.
-3. Push the value of `1` onto the stack.
-4. Ensure the values of `a` and `1` are correctly positioned on the stack.
-5. Execute the addition operation.
+The state of the stack is especially important to pay attention to. In this example, only the two values of interest are present on the stack when performing the ADD operation. In cases where we have more than two values on the stack, additional opcodes may be necessary to move the values of interest to the top of the stack.
 
-...
+Each EVM opcode has a specific cost in terms of gas units. Some are more expensive than others, depending on the complexity of the operation. The majority of the gas cost associated with executing a transaction is simply the sum of all the opcodes executed within that transaction.
+
+For a full, comprehensive list of opcodes, here are two resources I have found helpful:
+
+* [wolflo/evm-opcodes](https://github.com/wolflo/evm-opcodes)
+* [evm.codes (interactive)](https://www.evm.codes/)
+
