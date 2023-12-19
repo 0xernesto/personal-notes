@@ -9,13 +9,14 @@
   * [Gas Optimization](blockchain/ethereum/gas-optimization.md)
   * [Foundry](blockchain/ethereum/foundry.md)
 
-## 💻 Web Development
+## 💻 Programming
 
-* [Git](web-development/git.md)
-* [JavaScript](web-development/javascript/README.md)
-  * [Operators](web-development/javascript/operators.md)
-* [Python](web-development/python/README.md)
-  * [Poetry](web-development/python/poetry.md)
+* [Git](programming/git.md)
+* [Big O Notation](programming/big-o-notation.md)
+* [JavaScript](programming/javascript/README.md)
+  * [Operators](programming/javascript/operators.md)
+* [Python](programming/python/README.md)
+  * [Poetry](programming/python/poetry.md)
 
 ## 🏛 Economics
 

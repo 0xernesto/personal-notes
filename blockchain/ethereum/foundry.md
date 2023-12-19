@@ -1,13 +1,10 @@
 ---
-description: >-
-  Smart contract development toolkit for managing dependencies, compiling,
-  testing, deploying, and interacting with smart contracts from the command line
-  and via Solidity scripts.
+description: Overview of the Foundry Smart Contract Development Toolkit
 ---
 
 # Foundry
 
-## <mark style="color:purple;">Overview</mark>
+## <mark style="color:purple;">Introduction</mark>
 
 Foundry is an alternative to tools like Hardhat, Truffle, Brownie, etc.
 

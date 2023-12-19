@@ -1,5 +1,5 @@
 ---
-description: Python Dependency Management and Packaging Tool
+description: Overview of the Poetry Dependency Management and Packaging Tool
 ---
 
 # Poetry

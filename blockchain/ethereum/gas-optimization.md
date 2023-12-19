@@ -1,5 +1,5 @@
 ---
-description: Comprehensive overview for developing gas-efficient smart contracts.
+description: Overview for Developing Gas-Efficient Smart Contracts
 ---
 
 # Gas Optimization
