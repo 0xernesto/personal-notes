@@ -12,7 +12,7 @@
 ## 💻 Programming
 
 * [Git](programming/git.md)
-* [Big O Notation](programming/big-o-notation.md)
+* [Computational Complexity](programming/computational-complexity.md)
 * [JavaScript](programming/javascript/README.md)
   * [Operators](programming/javascript/operators.md)
 * [Python](programming/python/README.md)
