@@ -7,6 +7,7 @@
 
 * [Ethereum](blockchain/ethereum/README.md)
   * [Gas Optimization](blockchain/ethereum/gas-optimization.md)
+  * [Solidity Compiler](blockchain/ethereum/solidity-compiler.md)
   * [Foundry](blockchain/ethereum/foundry.md)
 
 ## 💻 Programming

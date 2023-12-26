@@ -18,7 +18,7 @@ The table below uses Big O notation to succinctly break down seven common comple
 
 Figure 1 below illustrates the behavior of each complexity as input size grows. Note that the y-axis includes two types of resources. This is because Big O notation can be used to describe either time complexity or space complexity. The only difference is that time complexity is measured in terms of CPU operations as a function of input size, and space complexity is measured in terms of memory space required, also as a function of input size.
 
-<figure><img src="../.gitbook/assets/complexityGraph (2).png" alt=""><figcaption><p>Figure 1: Complexity Functions Graph</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/complexityGraph (1).png" alt=""><figcaption><p>Figure 1: Complexity Functions Graph</p></figcaption></figure>
 
 ...
 

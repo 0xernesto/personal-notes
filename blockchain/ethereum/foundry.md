@@ -25,55 +25,11 @@ Foundry is the superior choice is because:
 
 <img src="../../.gitbook/assets/GitHub-Mark-Light-32px.png" alt="" data-size="line"> [Foundry Github](https://github.com/foundry-rs/foundry)
 
-## <mark style="color:purple;">Manage Solidity Compiler (solc)</mark>
+## <mark style="color:purple;">Solidity Compiler Management</mark>
 
-Foundry relies on `svm` to install native builds for Apple Silicon machines. All `solc` versions are installed under `~/.svm/`.
+Foundry relies on [svm-rs](https://github.com/alloy-rs/svm-rs) to install and detect Solidity compiler versions. Working on multiple projects may require using different `solc` versions.&#x20;
 
-Here's how to set up `solc` version management with `svm` on your Apple Silicon machine:
-
-1. Install Rust:
-
-```markup
-curl https://sh.rustup.rs -sSf | sh
-```
-
-2. Install [svm-rs](https://github.com/roynalnaruto/svm-rs):
-
-```markup
-cargo install svm-rs
-```
-
-That's it. Here are some usage examples:
-
-List installed and available versions:
-
-```
-svm list
-```
-
-Install a version:
-
-```markup
-svm install <VERSION>
-```
-
-Set global version from installed versions:&#x20;
-
-```markup
-svm use <VERSION>
-```
-
-Remove an installed version:&#x20;
-
-```markup
-svm remove <VERSION>
-```
-
-List exact `solc` commit (replace x and y with your version numbers):
-
-```markup
-~/.svm/0.x.y/solc-0.x.y --version
-```
+For a guide on how to manage `solc` versions, please refer to the [Solidity Compiler](solidity-compiler.md) section of these notes.
 
 ## <mark style="color:purple;">Forge Commands</mark>
 
