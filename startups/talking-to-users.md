@@ -12,7 +12,7 @@ The Mom Test is a set of three simple rules for crafting good questions that eve
 2. Ask about specifics in the past instead of generics or opinions about the future.
 3. Talk less and listen more.
 
-<img src="../.gitbook/assets/MomTest.png" alt="" data-size="line"> [The Mom Test by Rob Fitzpatrick](https://www.amazon.com/Mom-Test-customers-business-everyone/dp/1492180742/ref=tmm\_pap\_swatch\_0?\_encoding=UTF8\&qid=1661921988\&sr=8-1)
+<img src="../.gitbook/assets/mom-test-book.png" alt="" data-size="line"> [The Mom Test by Rob Fitzpatrick](https://www.amazon.com/Mom-Test-customers-business-everyone/dp/1492180742/ref=tmm_pap_swatch_0?_encoding=UTF8&qid=1661921988&sr=8-1)
 
 ## <mark style="color:purple;">Info Needed from Users</mark>
 
