@@ -150,21 +150,36 @@ To understand what opcodes are, let's consider the smart contract below. From a 
 contract Test {
     uint256 private a = 3;
     
-    function aPlusOne() external view returns(uint256) {
+    function doTheThing() external view returns(uint256) {
         return a + 1;
     }
 }
 ```
 
-Given the code above, the following is a simplified breakdown of the most relevant opcodes that will execute on the EVM when `aPlusOne()` is called.
+Given the code above, the following is a simplified breakdown of the most relevant opcodes that will execute on the EVM when `doTheThing()` is called.
 
-<table><thead><tr><th width="136">Opcode</th><th width="254">Description</th><th width="125">Stack State</th></tr></thead><tbody><tr><td><code>PUSH1 00</code></td><td>Push <code>0</code> onto the stack.</td><td>0</td></tr><tr><td><code>SLOAD</code></td><td>Treat <code>0</code> as a storage slot and load the corresponding value.</td><td>3</td></tr><tr><td><code>PUSH1 01</code></td><td>Push <code>1</code> onto the stack.</td><td>1<br>3</td></tr><tr><td><code>ADD</code></td><td>Add <code>1</code> and <code>3</code>.</td><td>4</td></tr></tbody></table>
+<table><thead><tr><th width="149">Opcode</th><th width="257">Description</th><th>Stack State</th></tr></thead><tbody><tr><td><code>PUSH1 00</code></td><td>Push <code>0</code> onto the stack.</td><td>0</td></tr><tr><td><code>SLOAD</code></td><td>Treat <code>0</code> as a storage slot and load the corresponding value.</td><td>3</td></tr><tr><td><code>PUSH1 01</code></td><td>Push <code>1</code> onto the stack.</td><td>3<br>1 &#x3C;- top of stack</td></tr><tr><td><code>ADD</code></td><td>Add <code>1</code> and <code>3</code>.</td><td>4</td></tr></tbody></table>
 
-The state of the stack is especially important to pay attention to. In this example, only the two values of interest are present on the stack when performing the ADD operation. In cases where we have more than two values on the stack, additional opcodes may be necessary to move the values of interest to the top of the stack.
+Here is a slightly more complex example:
+
+```solidity
+contract Test {
+    uint256 private a = 3;
+    uint256 private b = 6;
+    
+    function doTheThing() external view returns(uint256) {
+        return 5 * a + 4 * b;
+    }
+}
+```
+
+The simplified opcode breakdown looks like this:
+
+<table><thead><tr><th width="149">Opcode</th><th width="257">Description</th><th>Stack State</th></tr></thead><tbody><tr><td><code>PUSH1 05</code></td><td>Push <code>5</code> onto the stack.</td><td>5</td></tr><tr><td><code>PUSH1 00</code></td><td>Push <code>0</code> onto the stack.</td><td>5<br>0 &#x3C;- top of stack</td></tr><tr><td><code>SLOAD</code></td><td>Treat <code>0</code> as a storage slot and load the corresponding value.</td><td><p>5</p><p>3 &#x3C;- top of stack</p></td></tr><tr><td><code>PUSH1 04</code></td><td>Push <code>4</code> onto the stack.</td><td><p>5</p><p>3</p><p>4 &#x3C;- top of stack</p></td></tr><tr><td><code>PUSH1 01</code></td><td>Push <code>1</code> onto the stack.</td><td><p>5</p><p>3</p><p>4</p><p>1 &#x3C;- top of stack</p></td></tr><tr><td><code>SLOAD</code></td><td>Treat <code>1</code> as a storage slot and load the corresponding value.</td><td><p>5</p><p>3</p><p>4</p><p>6 &#x3C;- top of stack</p></td></tr><tr><td><code>MUL</code></td><td>Multiply <code>6</code> and <code>4</code>. </td><td><p>5</p><p>3</p><p>24 &#x3C;- top of stack</p></td></tr><tr><td><code>SWAP2</code></td><td>Swap the topmost value in the stack with the value located two positions below it.</td><td><p>24</p><p>3</p><p>5 &#x3C;- top of stack</p></td></tr><tr><td><code>MUL</code></td><td>Multiply <code>5</code> and <code>3</code>. </td><td><p>24</p><p>15 &#x3C;- top of stack</p></td></tr><tr><td><code>ADD</code></td><td>Add <code>15</code> and <code>24</code>.</td><td>39</td></tr></tbody></table>
 
 Each EVM opcode has a specific cost in terms of gas units. Some are more expensive than others, depending on the complexity of the operation. The majority of the gas cost associated with executing a transaction is simply the sum of all the opcodes executed within that transaction.
 
-For a full, comprehensive list of opcodes, here are two resources I have found helpful:
+For a full, comprehensive list of opcodes, here are two helpful resources:
 
 * [wolflo/evm-opcodes](https://github.com/wolflo/evm-opcodes)
 * [evm.codes (interactive)](https://www.evm.codes/)
