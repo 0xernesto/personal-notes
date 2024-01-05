@@ -4,7 +4,7 @@ description: Overview for Developing Gas-Efficient Smart Contracts
 
 # Gas Optimization
 
-**NOTE:** This overview is a formalization of my notes from one of [Jeffrey Scholtz's ](https://twitter.com/jeyffre)courses. I highly recommend taking any of his [Udemy courses](https://www.udemy.com/user/jeffrey-scholz/) or [RareSkills bootcamps](https://www.rareskills.io/web3-blockchain-bootcamps).
+<mark style="color:yellow;">**NOTE:**</mark> This overview is a formalization of my notes from one of [Jeffrey Scholtz's ](https://twitter.com/jeyffre)courses. I highly recommend taking any of his [Udemy courses](https://www.udemy.com/user/jeffrey-scholz/) or [RareSkills bootcamps](https://www.rareskills.io/web3-blockchain-bootcamps).
 
 ## <mark style="color:purple;">Introduction</mark>
 
@@ -140,14 +140,14 @@ Lastly, it's crucial to remember that once a smart contract is deployed, the sto
 
 For a more in-depth understanding of storage, checkout [Alchemy's storage layout guide.](https://docs.alchemy.com/docs/smart-contract-storage-layout)
 
-## <mark style="color:purple;">Opcodes</mark>
+## <mark style="color:purple;">Opcode Basics</mark>
 
-To understand what opcodes are, let's consider the smart contract below. From a semantic perspective, the language of the Solidity code is very straight forward. However, this language is extremely foreign to a computer. <mark style="color:yellow;">Since the EVM is a computer, we need to translate the Solidity code to a language that the EVM can understand by compiling the Solidity code. The EVM understands assembly code, which is a set of highly specific and concise instructions designed to carry out specific tasks. These instructions are called opcodes.</mark>
+To understand what opcodes are, let's consider the smart contracts below. From a semantic perspective, the language of the Solidity code is very straight forward. However, this language is extremely foreign to a computer. <mark style="color:yellow;">Since the EVM is a computer, we need to translate the Solidity code to a language that the EVM can understand by compiling the Solidity code. The EVM understands assembly code, which is a set of highly specific and concise instructions designed to carry out specific tasks. These instructions are called opcodes.</mark>
 
-**NOTE:** The EVM is a stack-based machine. This means that a [stack](https://en.wikipedia.org/wiki/Stack\_\(abstract\_data\_type\)) is the primary data structure used for handling low-level instructions (opcodes) in a sequential, [LIFO](../../glossary.md) order.
+<mark style="color:yellow;">**NOTE:**</mark> The EVM is a stack-based machine. This means that a [stack](https://en.wikipedia.org/wiki/Stack\_\(abstract\_data\_type\)) is the primary data structure used for handling low-level instructions (opcodes) in a sequential, [LIFO](../../glossary.md) order.
 
 ```solidity
-contract Test {
+contract TestContractOne {
     uint256 private a = 3;
     
     function doTheThing() external view returns(uint256) {
@@ -163,7 +163,7 @@ Given the code above, the following is a simplified breakdown of the most releva
 Here is a slightly more complex example:
 
 ```solidity
-contract Test {
+contract TestContracTwo {
     uint256 private a = 3;
     uint256 private b = 6;
     
@@ -179,8 +179,91 @@ The simplified opcode breakdown looks like this:
 
 Each EVM opcode has a specific cost in terms of gas units. Some are more expensive than others, depending on the complexity of the operation. The majority of the gas cost associated with executing a transaction is simply the sum of all the opcodes executed within that transaction.
 
-For a full, comprehensive list of opcodes, here are two helpful resources:
+For a full, comprehensive list of opcodes and their associated cost, here are two helpful resources:
 
 * [wolflo/evm-opcodes](https://github.com/wolflo/evm-opcodes)
 * [evm.codes (interactive)](https://www.evm.codes/)
 
+## <mark style="color:purple;">Function Selectors</mark>
+
+To understand what a function selector is, we first need to understand what a function signature is in the context of Ethereum smart contracts.
+
+**Function Signature**
+
+* A concise representation of a function that includes the function's name and the types of its input parameters
+* Ex: `transfer(address,uint256)`
+* Ex: `someFunc(bool[],bytes)`
+
+**Function Selector**
+
+* The first 4 bytes of the `keccak-256` hash of the function signature, used to identify functions in bytecode.
+* Ex: `keccak256("transfer(address,uint256)")` -> `0xa9059cbb`
+* Ex: `keccak256("someFunc(bool[],bytes)")`  -> `0x7a2cf21d`
+
+Now, let’s recall that there are two types of function calls that we can make to smart contracts:
+
+1. `read`: functions that only read data without making any state changes.
+2. `write`: functions that alter the contract’s state or involve ETH transfers, which requires a transaction to be published.
+
+When calling a `write` function on a smart contract, we are simply sending a transaction to the address of the smart contract. However, <mark style="color:yellow;">for the smart contract to know which function we want to interact with, the function selector and the ABI-encoded function parameter values must be included in the</mark> <mark style="color:yellow;"></mark><mark style="color:yellow;">`input`</mark> <mark style="color:yellow;"></mark><mark style="color:yellow;">field of the transaction object. If the function has no parameters, only the function selector must be included.</mark> This, of course, is abstracted away from users, but it's important to understand.
+
+For reference, here is an example of a transaction object.
+
+```json
+{
+    "from": "0x1923f626bb8dc025849e00f99c25fe2b2f7fb0db",
+    "gas": "0x55555",
+    "maxFeePerGas": "0x1234",
+    "maxPriorityFeePerGas": "0x1234",
+    "input": "0xabcd",
+    "nonce": "0x0",
+    "to": "0x07a565b7ed7d7a678680a4c162885bedbb695fe0",
+    "value": "0x1234"
+ }
+```
+
+Now, let's consider the smart contract below.
+
+```solidity
+contract TestContract {
+    function doNothing(uint256 someNumber) external payable {
+        // do nothing
+    }
+}
+```
+
+Say we want to call `doNothing(uint256 someNumber)` on this smart contract and send it 100 Wei. The following two Foundry commands are equivalent ways to do accomplish this.
+
+{% code overflow="wrap" %}
+```markup
+cast send 0xc5Ae07D32067005CC098240A44828Cd7A087d4FC "doNothing(uint256)" 100 --value 0.0000000000000001ether --rpc-url <RPC_URL> --private-key <PRIVATE_KEY>
+```
+{% endcode %}
+
+{% code overflow="wrap" %}
+```markup
+cast send 0xc5Ae07D32067005CC098240A44828Cd7A087d4FC 0xdce1d5ba0000000000000000000000000000000000000000000000000000000000000064 --value 0.0000000000000001ether --rpc-url <RPC_URL> --private-key <PRIVATE_KEY>
+```
+{% endcode %}
+
+Clearly, the first command is easier to understand, but the second command shows that we can get the same result by explicitly providing the function selector and ABI-encoded parameter in the transaction’s `input` field.
+
+To verify this, the smart contract above was deployed to Gnosis, and two transactions were published with the commands above.
+
+Deployed contract: [0xc5Ae0...7d4FC](https://gnosisscan.io/address/0xc5Ae07D32067005CC098240A44828Cd7A087d4FC)
+
+TX sent with 1st Command: [0x2dc78...1e30f](https://gnosisscan.io/tx/0x2dc78ba747fd432f95ec2a0b9433387937b8f7a471a4c3d017a8cee44b91e30f)
+
+TX sent with 2nd Command: [0x9ee16...7f2e1](https://gnosisscan.io/tx/0x9ee169f4ca5f470e5be11efc4ff9184ea4203406b92637b3cfdca171a097f2e1)
+
+Both transactions resulted in the same outcome. Below are screenshots of what the input data looks like for both transactions on Gnosisscan. The first image is the default (decoded) view, while the second is the actual hex data that was included in the `input` field.
+
+Additionally, notice that the hex data in the images below is the same as the 2nd Foundry command above.
+
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption><p>Decoded <code>input</code> field of transaction object on Gnosisscan.</p></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption><p>Original <code>input</code> field of transaction object on Gnosisscan.</p></figcaption></figure>
+
+## <mark style="color:purple;">More Coming Soon...</mark>
+
+Coming soon...
