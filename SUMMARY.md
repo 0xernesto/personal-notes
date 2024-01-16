@@ -17,6 +17,7 @@
 * [JavaScript](programming/javascript/README.md)
   * [Operators](programming/javascript/operators.md)
 * [Python](programming/python/README.md)
+  * [PIP](programming/python/pip.md)
   * [Poetry](programming/python/poetry.md)
 
 ## 🏛 Economics

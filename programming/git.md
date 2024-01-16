@@ -63,6 +63,31 @@ git branch -D <BRANCH_NAME>
 git branch -m <OLD_BRANCH_NAME>  <NEW_BRANCH_NAME>
 ```
 
+### Divergent Branches
+
+Sometimes, when attempting to pull changes on a branch, an error occurs with the following information:
+
+```bash
+hint: You have divergent branches and need to specify how to reconcile them.
+hint: You can do so by running one of the following commands sometime before
+hint: your next pull:
+hint: 
+hint:   git config pull.rebase false  # merge
+hint:   git config pull.rebase true   # rebase
+hint:   git config pull.ff only       # fast-forward only
+hint: 
+hint: You can replace "git config" with "git config --global" to set a default
+hint: preference for all repositories. You can also pass --rebase, --no-rebase,
+hint: or --ff-only on the command line to override the configured default per
+hint: invocation.
+```
+
+The following command is the preferred way to ensure a clean, linear history. It will fetch the changes from the remote branch, and instead of merging the fetched changes into the local branch, it applies the local changes on top of the changes retrieved.
+
+```markup
+git pull --rebase origin <BRANCH_NAME>
+```
+
 ## <mark style="color:purple;">Commits</mark>
 
 ### Revert to Previous Commit
