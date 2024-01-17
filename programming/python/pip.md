@@ -47,13 +47,13 @@ The following is a list of common commands used when managing a project with `pi
 
 #### Activate Virtual Environment
 
-```markup
+```bash
 source env/bin/activate
 ```
 
 #### Deactivate Virtual Environment
 
-```markup
+```bash
 deactivate
 ```
 
@@ -65,19 +65,19 @@ pip uinstall <PACKAGE_NAME>
 
 #### List Installed Packages
 
-```markup
+```bash
 pip freeze
 ```
 
 #### Create a requirements.txt File
 
-```markup
+```bash
 pip freeze > requirements.txt
 ```
 
 #### Install Packages from a requirements.txt File
 
-```markup
+```bash
 pip install -r requirements.txt
 ```
 
@@ -112,5 +112,34 @@ To prevent dependency conflicts, it is recommended to create a `requirements.txt
 ```markup
 pip freeze > requirements.txt
 ```
+
+</details>
+
+<details>
+
+<summary>Can I disable pip when there is no virtual environment activated?</summary>
+
+Yes. To require a virtual environment to be active when running `pip` commands, a config file can be used.
+
+Run the following command to set `require-virtualenv` to `True`.
+
+```bash
+pip config set global.require-virtualenv True
+```
+
+Now, the contents of `~/.config/pip/pip.conf` should be:
+
+```
+[global]
+require-virtualenv = True
+```
+
+If you ever need to get around this requirement, you can either temporarily set `require-virtualenv` to `False`, or prepend your `pip` commands as follows:
+
+```markup
+PIP_REQUIRE_VIRTUALENV=false pip install <PACKAGE_NAME>
+```
+
+
 
 </details>
