@@ -12,6 +12,7 @@
 
 ## 💻 Programming
 
+* [ZSH](programming/zsh.md)
 * [Git](programming/git.md)
 * [Computational Complexity](programming/computational-complexity.md)
 * [JavaScript](programming/javascript/README.md)
