@@ -90,3 +90,17 @@ cat ~/.zsh_history
 ```bash
 pbcopy < /dev/null
 ```
+
+## <mark style="color:purple;">List Local IP Address</mark>
+
+The following command lists all local, non-loopback IPv4 addresses. Each IP address corresponds to a different network interface or network configuration on your machine.
+
+```bash
+ifconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}'
+```
+
+## <mark style="color:purple;">List Public IP Address</mark>
+
+```bash
+curl ifconfig.me
+```
