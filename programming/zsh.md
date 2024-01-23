@@ -104,3 +104,31 @@ ifconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}'
 ```bash
 curl ifconfig.me
 ```
+
+## <mark style="color:purple;">SSH</mark>
+
+Access a remote machine via SSH.
+
+```markup
+ssh <REMOTE_USERNAME>@<REMOTE_IP_ADDRESS>
+```
+
+Exit SSH Session.
+
+```bash
+exit
+```
+
+In case your shell does not display `user@hostname`, the following are commands to check this information.
+
+Check the current user's username:
+
+```bash
+whoami
+```
+
+Check the current machine's hostname:
+
+```bash
+hostname -s
+```
