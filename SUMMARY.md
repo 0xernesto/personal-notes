@@ -16,8 +16,9 @@
 * [Git](programming/git.md)
 * [Computational Complexity](programming/computational-complexity.md)
 * [JavaScript](programming/javascript/README.md)
-  * [Operators](programming/javascript/operators.md)
+  * [Syntax](programming/javascript/operators.md)
 * [Python](programming/python/README.md)
+  * [Syntax](programming/python/syntax.md)
   * [PIP](programming/python/pip.md)
   * [Poetry](programming/python/poetry.md)
 

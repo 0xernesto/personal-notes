@@ -1,8 +1,8 @@
 ---
-description: Helpful JavaScript Operators
+description: Overview of JavaScript Syntax
 ---
 
-# Operators
+# Syntax
 
 ### **Optional Chaining Operator (?.)**&#x20;
 
