@@ -63,6 +63,18 @@ git branch -D <BRANCH_NAME>
 git branch -m <OLD_BRANCH_NAME>  <NEW_BRANCH_NAME>
 ```
 
+### Unstage All Changes on Local Branch
+
+```bash
+git reset
+```
+
+### Unstage a File on Local Branch
+
+```markup
+git reset <FILE_PATH>
+```
+
 ### Divergent Branches
 
 Sometimes, when attempting to pull changes on a branch, an error occurs with the following information:
@@ -100,7 +112,7 @@ git reset --hard <COMMIT_HASH>
 
 The following command will revert all unstaged changes on the current branch. For example, any changes seen when running `git status` before staging will be reverted when running the command below.
 
-```markup
+```bash
 git checkout -- .
 ```
 
@@ -126,7 +138,18 @@ git config user.email
 
 ### Change Username and Email in Current Repo
 
+This overwrites the global config username and email.
+
 ```markup
 git config user.name <USER_NAME>
 git config user.email <EMAIL>
+```
+
+### Change Username and Email Globally
+
+This will be default config used if username and email are not set in a repo.
+
+```markup
+git config --global user.name <USER_NAME>
+git config --global user.email <EMAIL>
 ```

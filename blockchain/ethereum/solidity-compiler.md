@@ -12,13 +12,13 @@ Alloy's [svm-rs](https://github.com/alloy-rs/svm-rs) is the easiest way to manag
 
 1. Install Rust (if not already installed):
 
-```markup
+```bash
 curl https://sh.rustup.rs -sSf | sh
 ```
 
 2. Install the [svm-rs](https://github.com/alloy-rs/svm-rs) crate:
 
-```markup
+```bash
 cargo install svm-rs
 ```
 
@@ -26,7 +26,7 @@ cargo install svm-rs
 
 List installed and available versions:
 
-```
+```bash
 svm list
 ```
 
@@ -48,8 +48,8 @@ Remove an installed version:&#x20;
 svm remove <VERSION>
 ```
 
-List exact `solc` commit (replace x and y with your version numbers):
+List exact `solc` commit (replace `x` and `y` with your version numbers):
 
-```markup
+```bash
 ~/.svm/0.x.y/solc-0.x.y --version
 ```
