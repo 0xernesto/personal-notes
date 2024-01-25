@@ -4,6 +4,8 @@ description: Overview of JavaScript Syntax
 
 # Syntax
 
+## <mark style="color:purple;">Operators</mark>
+
 ### **Optional Chaining Operator (?.)**&#x20;
 
 This operator (<mark style="color:yellow;">`?.`</mark>) allows access to nested object properties without having to check if each intermediate object exists. Returns `undefined` if the property chain breaks.
