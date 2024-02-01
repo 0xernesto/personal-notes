@@ -20,7 +20,7 @@ The majority of my interests lie within:
 * Philosophy
 * Startups
 
-If you couldn't tell by the list above, I am more of a generalist than a specialist. I love learning a broad range of subjects, taking notes, thinking, and solving hard problems.
+If you couldn't tell by the list above, I'm a generalist, not a specialist. I love learning a broad range of subjects and solving hard problems.
 
 ## Contact
 
