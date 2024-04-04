@@ -26,7 +26,7 @@ cargo install svm-rs
 
 List installed and available versions:
 
-```bash
+```
 svm list
 ```
 

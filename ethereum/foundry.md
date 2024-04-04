@@ -21,9 +21,9 @@ Foundry is the superior choice is because:
 
 ### Official Links
 
-<img src="../.gitbook/assets/foundry-book-logo.png" alt="" data-size="line"> [Foundry Book (Docs)](https://book.getfoundry.sh/)
+📖 [Foundry Book (Docs)](https://book.getfoundry.sh/)
 
-<img src="../.gitbook/assets/github-logo.png" alt="" data-size="line"> [Foundry Github](https://github.com/foundry-rs/foundry)
+⚙️ [Foundry Github](https://github.com/foundry-rs/foundry)
 
 ## Solidity Compiler Management
 
