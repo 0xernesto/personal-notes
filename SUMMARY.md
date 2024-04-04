@@ -3,12 +3,11 @@
 * [Home](README.md)
 * [Glossary](glossary.md)
 
-## ⛓ Blockchain
+## ⛓️ Ethereum
 
-* [Ethereum](blockchain/ethereum/README.md)
-  * [Gas Optimization](blockchain/ethereum/gas-optimization.md)
-  * [Solidity Compiler](blockchain/ethereum/solidity-compiler.md)
-  * [Foundry](blockchain/ethereum/foundry.md)
+* [Solidity Compiler](ethereum/solidity-compiler.md)
+* [Gas Optimization](ethereum/gas-optimization.md)
+* [Foundry](ethereum/foundry.md)
 
 ## 💻 Programming
 
@@ -22,7 +21,7 @@
   * [PIP](programming/python/pip.md)
   * [Poetry](programming/python/poetry.md)
 
-## 🏛 Economics
+## 🏛️ Economics
 
 * [Economic Systems](economics/economic-systems.md)
 * [Game Theory](economics/game-theory.md)
