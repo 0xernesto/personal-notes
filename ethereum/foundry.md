@@ -4,7 +4,7 @@ description: Overview of the Foundry Smart Contract Development Toolkit
 
 # Foundry
 
-## <mark style="color:purple;">Introduction</mark>
+## Introduction
 
 Foundry is an alternative to tools like Hardhat, Truffle, Brownie, etc.
 
@@ -21,17 +21,17 @@ Foundry is the superior choice is because:
 
 ### Official Links
 
-<img src="../../.gitbook/assets/foundry-book-logo.png" alt="" data-size="line"> [Foundry Book (Docs)](https://book.getfoundry.sh/)
+<img src="../.gitbook/assets/foundry-book-logo.png" alt="" data-size="line"> [Foundry Book (Docs)](https://book.getfoundry.sh/)
 
-<img src="../../.gitbook/assets/github-logo.png" alt="" data-size="line"> [Foundry Github](https://github.com/foundry-rs/foundry)
+<img src="../.gitbook/assets/github-logo.png" alt="" data-size="line"> [Foundry Github](https://github.com/foundry-rs/foundry)
 
-## <mark style="color:purple;">Solidity Compiler Management</mark>
+## Solidity Compiler Management
 
 Foundry relies on [svm-rs](https://github.com/alloy-rs/svm-rs) to install and detect Solidity compiler versions. Working on multiple projects may require using different `solc` versions.
 
 For a guide on how to manage `solc` versions, please refer to the [Solidity Compiler](solidity-compiler.md) section of these notes.
 
-## <mark style="color:purple;">Forge Commands</mark>
+## Forge Commands
 
 The `forge` command is used to build, test, and deploy smart contracts.
 
@@ -50,7 +50,7 @@ forge build
 * The `--etherscan-api-key <API_KEY> --verify` part is only required if you would like your contract to be automatically [verified](https://etherscan.io/verifyContract) on the chain's block explorer, which is highly recommended. You can get an API key by creating an account on the chain's block explorer (e.g., Etherscan, Arbiscan, Polygonscan, etc.).
 
 {% code overflow="wrap" %}
-```markup
+```
 forge create <CONTRACT_FILE_PATH>:<CONTRACT_NAME> --constructor-args <ARG1> <ARG2> --rpc-url <RPC_URL> --private-key <PRIVATE_KEY> --etherscan-api-key <API_KEY> --verify
 ```
 {% endcode %}
@@ -64,7 +64,7 @@ forge create <CONTRACT_FILE_PATH>:<CONTRACT_NAME> --constructor-args <ARG1> <ARG
   If we don't specify this flag, Level 1 is assumed, `-vv` = Level 2, `-vvv` = Level 3, etc.
 
 {% code overflow="wrap" %}
-```markup
+```bash
 forge test --fork-url <RPC_URL> --match-test <TEST_NAME> -vvvvv
 ```
 {% endcode %}
