@@ -115,6 +115,20 @@ The amount can be an integer, which defaults to Wei, or you can specify the unit
 cast send <SOME_ADDRESS> --value <AMOUNT> --private-key <PRIVATE_KEY>
 ```
 
+### Get the Keccak-256 Hash of a UTF-8 String
+
+```
+cast from-utf8 "hello world"
+```
+
+### Generate Calldata from a Function Selector and Argument Values
+
+{% code overflow="wrap" %}
+```
+cast calldata "somFunc(address,uint256)" 0x37df0c956cdcd13C0EF28fC72D33011001e98DA2 123456
+```
+{% endcode %}
+
 ## Testing on Local Mainnet Fork
 
 ### Create a Local Fork
