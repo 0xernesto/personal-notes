@@ -11,8 +11,6 @@
 
 ## 💻 Programming
 
-* [ZSH](programming/zsh.md)
-* [Git](programming/git.md)
 * [Computational Complexity](programming/computational-complexity.md)
 * [JavaScript](programming/javascript/README.md)
   * [Syntax](programming/javascript/operators.md)
@@ -20,11 +18,8 @@
   * [Syntax](programming/python/syntax.md)
   * [PIP](programming/python/pip.md)
   * [Poetry](programming/python/poetry.md)
-
-## 🏛️ Economics
-
-* [Economic Systems](economics/economic-systems.md)
-* [Game Theory](economics/game-theory.md)
+* [ZSH](programming/zsh.md)
+* [Git](programming/git.md)
 
 ## 🚀 Startups
 

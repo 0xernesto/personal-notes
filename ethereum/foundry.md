@@ -40,7 +40,7 @@ The `forge` command is used to build, test, and deploy smart contracts.
 * [Foundry Book - forge build](https://book.getfoundry.sh/reference/forge/forge-build)
 * The following command will compile all contracts inside the `/src` directory and save the output in the `/out` directory.
 
-```bash
+```
 forge build
 ```
 
@@ -64,7 +64,7 @@ forge create <CONTRACT_FILE_PATH>:<CONTRACT_NAME> --constructor-args <ARG1> <ARG
   If we don't specify this flag, Level 1 is assumed, `-vv` = Level 2, `-vvv` = Level 3, etc.
 
 {% code overflow="wrap" %}
-```bash
+```
 forge test --fork-url <RPC_URL> --match-test <TEST_NAME> -vvvvv
 ```
 {% endcode %}
@@ -76,12 +76,12 @@ forge test --fork-url <RPC_URL> --match-test <TEST_NAME> -vvvvv
 * Also, the minimum amount of detail will be displayed in the terminal as the tests run, since the default verbosity is Level 1.
 
 {% code overflow="wrap" %}
-```markup
+```
 forge test --fork-url <RPC_URL>
 ```
 {% endcode %}
 
-## <mark style="color:purple;">Cast Commands</mark>
+## Cast Commands
 
 The `cast` command is used to perform Ethereum RPC calls to deployed smart contracts.
 
@@ -91,7 +91,7 @@ The `cast` command is used to perform Ethereum RPC calls to deployed smart contr
 * Calling a contract function **does not modify any on-chain data**. This is simply a way to read data returned by the function that we call using the `cast call` command.
 
 {% code overflow="wrap" %}
-```markup
+```
 cast call <CONTRACT_ADDRESS> "functionName(<PARAM1_TYPE>, <PARAM2_TYPE>)" <PARAM1> <PARAM2> --rpc-url <RPC_URL>
 ```
 {% endcode %}
@@ -102,7 +102,7 @@ cast call <CONTRACT_ADDRESS> "functionName(<PARAM1_TYPE>, <PARAM2_TYPE>)" <PARAM
 * Submitting a transaction to a contract function **will modify on-chain data.** In order to successfully do this, we need to sign the transaction with our private key and pay the corresponding gas fee.
 
 {% code overflow="wrap" %}
-```markup
+```
 cast send <CONTRACT_ADDRESS> "functionName(<PARAM1_TYPE>, <PARAM2_TYPE>)" <PARAM1> <PARAM2> --rpc-url <RPC_URL> --private-key <PRIVATE_KEY>
 ```
 {% endcode %}
@@ -111,11 +111,11 @@ cast send <CONTRACT_ADDRESS> "functionName(<PARAM1_TYPE>, <PARAM2_TYPE>)" <PARAM
 
 The amount can be an integer, which defaults to Wei, or you can specify the units. For example `1ether`.
 
-```markup
-cast send <SOME_ADDRESS> --value <AMOUNT> --private-key <KEY>
+```
+cast send <SOME_ADDRESS> --value <AMOUNT> --private-key <PRIVATE_KEY>
 ```
 
-## <mark style="color:purple;">Testing on Local Mainnet Fork</mark>
+## Testing on Local Mainnet Fork
 
 ### Create a Local Fork
 
@@ -127,7 +127,7 @@ The `anvil` command is used to create a local Mainnet fork for deploying and tes
 * If `--chain-id` is not specified, the default value is set to it's Mainnet counterpart (i.e., chain ID would be 1 for Ethereum).
 * If `--port` is not specified, the default value is set to 8545.
 
-```markup
+```
 anvil --fork-url <RPC_URL> --chain-id <CHAIN_ID> --port <PORT>
 ```
 
@@ -135,6 +135,6 @@ anvil --fork-url <RPC_URL> --chain-id <CHAIN_ID> --port <PORT>
 
 This allows you to submit transactions as if you were the owner of the account you are impersonating.
 
-```markup
+```
 cast rpc anvil_impersonateAccount <SOME_ADDRESS>
 ```

@@ -4,7 +4,7 @@ description: Overview of Python Syntax
 
 # Syntax
 
-## <mark style="color:purple;">For-Loops</mark>
+## For-Loops
 
 ### Iterate Through a List in Reverse Order
 
@@ -30,7 +30,7 @@ for i in myList:
     print(i)
 ```
 
-## <mark style="color:purple;">While-Loops</mark>
+## While-Loops
 
 ### Iterate Through a Sequence of Floats
 
@@ -47,7 +47,7 @@ while start < stop:
 print(float_range)
 ```
 
-## <mark style="color:purple;">Range</mark>
+## Range
 
 The `range()` function in Python creates an immutable sequence of integers, which can very helpful for iterating through loops. Note that the `stop` is exclusive, meaning it will not be included in the sequence.
 
@@ -99,7 +99,7 @@ for i in range(4, 20, 4):
 # 16
 ```
 
-## <mark style="color:purple;">Enumerate</mark>
+## Enumerate
 
 The `enumerate()` function in Python adds a counter to an [iterable](https://www.pythonlikeyoumeanit.com/Module2\_EssentialsOfPython/Iterables.html) and returns it in a form of an enumerate object. This object can then be used directly in for loops or be converted into a list of tuples, where each tuple contains a pair of the index and the value from the iterable.
 

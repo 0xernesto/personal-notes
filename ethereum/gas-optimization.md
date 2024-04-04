@@ -4,9 +4,9 @@ description: Overview for Developing Gas-Efficient Smart Contracts
 
 # Gas Optimization
 
-<mark style="color:yellow;">**NOTE:**</mark> This overview is a formalization of my notes from one of [Jeffrey Scholtz's ](https://twitter.com/jeyffre)courses. I highly recommend taking any of his [Udemy courses](https://www.udemy.com/user/jeffrey-scholz/) or [RareSkills bootcamps](https://www.rareskills.io/web3-blockchain-bootcamps).
+**NOTE:** This overview is a formalization of my notes from one of [Jeffrey Scholtz's ](https://twitter.com/jeyffre)courses. I highly recommend taking any of his [Udemy courses](https://www.udemy.com/user/jeffrey-scholz/) or [RareSkills bootcamps](https://www.rareskills.io/web3-blockchain-bootcamps).
 
-## <mark style="color:purple;">Introduction</mark>
+## Introduction
 
 To master Ethereum development, there are three areas that one should be very competent in:
 
@@ -17,7 +17,7 @@ To master Ethereum development, there are three areas that one should be very co
 
 It is important for smart contract engineers to be conscious of gas optimization, as our design choices impact not only our users, but the entire Ethereum network. This overview is meant to aid in grasping the broader implications of these choices.
 
-## <mark style="color:purple;">Gas Basics</mark>
+## Gas Basics
 
 The gas cost of a transaction depends on exactly 5 factors:
 
@@ -43,11 +43,11 @@ $$
 
 Gas optimization focuses on taking advantage of controllable factors to reduce the cost of transactions. For example, by making better design decisions, we can reduce the gas units of a particular on-chain action by 50%, but we can't control the gas prices or the price of ETH.
 
-The cheapest transaction we can submit to the Ethereum network is a native transfer (e.g., Alice transfers 5 ETH to Bob), which costs 21,000 gas units. This means that <mark style="color:yellow;">all transactions on Ethereum must cost at least 21,000 gas units.</mark>
+The cheapest transaction we can submit to the Ethereum network is a native transfer (e.g., Alice transfers 5 ETH to Bob), which costs 21,000 gas units. This means that all transactions on Ethereum must cost at least 21,000 gas units.
 
-## <mark style="color:purple;">Block Limit</mark>
+## Block Limit
 
-The block limit is simply the maximum block size. For Bitcoin, the block limit is 1 MB. Ethereum, does not have an explicit byte limit. Instead, Ethereum limits the amount of computations per block, which means the Ethereum block limit is defined in gas units. <mark style="color:yellow;">The current Ethereum block limit is 30 million gas units.</mark>
+The block limit is simply the maximum block size. For Bitcoin, the block limit is 1 MB. Ethereum, does not have an explicit byte limit. Instead, Ethereum limits the amount of computations per block, which means the Ethereum block limit is defined in gas units. The current Ethereum block limit is 30 million gas units.
 
 Theoretically, a block limit of 30 million gas units can fit 1,428 native transfer transactions, since each costs 21,000 gas units. On the other extreme, this limit can only fit 30 tornado cash transactions, since each costs \~1 million gas units.
 
@@ -55,7 +55,7 @@ Theoretically, a block limit of 30 million gas units can fit 1,428 native transf
 
 The throughput of the network is defined as the number of transactions per second (TPS) that can be verified.
 
-<mark style="color:yellow;">A new Ethereum block is generated every 15 seconds.</mark> This means that if all transactions were native transfers, the throughput would be 95 TPS.
+A new Ethereum block is generated every 15 seconds. This means that if all transactions were native transfers, the throughput would be 95 TPS.
 
 $$
 \frac{1428 \; TXs}{1 \; Block}*\frac{1 \; Block}{15 \; seconds} = 95 \; TPS
@@ -72,11 +72,11 @@ At time of writing this, the actual Ethereum throughput ranges from 15-25 TPS.
 * The highest bidders will get their transactions included in the block. This is why gas prices fluctuate.
 * One native transfer transaction (21,000 gas units) is 0.07% of Ethereum's computational capacity per 15 seconds.
 * If a transaction requires more than 30 million gas units to execute, it will never execute because it does not fit in a single block.
-* <mark style="color:yellow;">Your design choices as a smart contract engineer impact not only your users but the entire Ethereum network.</mark>
+* Your design choices as a smart contract engineer impact not only your users but the entire Ethereum network.
 
-## <mark style="color:purple;">Storage</mark>
+## Storage
 
-Ethereum smart contracts employ a storage model that allows for persistent storage of state variables in the [EVM](../../glossary.md). This model consists of two important concepts, storage layout and storage slots. Understanding these is key for gas optimization and data integrity in smart contracts, as mismanagement can result in vulnerabilities and high gas costs. Below are two brief explanations of storage layout and slots, but further [reading](https://docs.alchemy.com/docs/smart-contract-storage-layout) is highly encouraged.
+Ethereum smart contracts employ a storage model that allows for persistent storage of state variables in the [EVM](../glossary.md). This model consists of two important concepts, storage layout and storage slots. Understanding these is key for gas optimization and data integrity in smart contracts, as mismanagement can result in vulnerabilities and high gas costs. Below are two brief explanations of storage layout and slots, but further [reading](https://docs.alchemy.com/docs/smart-contract-storage-layout) is highly encouraged.
 
 ### Storage Layout
 
@@ -84,11 +84,11 @@ This refers to the way data is organized and accessed within a smart contract. S
 
 ### Storage Slots
 
-Each 256-bit key in the key-value storage model is referred to as a "slot". Every slot can store a value up to 256 bits. The values stored in these slots correspond to the state variables defined in the smart contract. <mark style="color:yellow;">The order of state variable declarations and the type of each variable impacts storage efficiency and the cost of reading from and writing to these variables.</mark>
+Each 256-bit key in the key-value storage model is referred to as a "slot". Every slot can store a value up to 256 bits. The values stored in these slots correspond to the state variables defined in the smart contract. The order of state variable declarations and the type of each variable impacts storage efficiency and the cost of reading from and writing to these variables.
 
 ### Accessing Slots in Solidity
 
-<mark style="color:yellow;">The EVM uses storage slots to know which values to access. In other words, the EVM does not care what we name our variables because it only understands the location of our variables.</mark>
+The EVM uses storage slots to know which values to access. In other words, the EVM does not care what we name our variables because it only understands the location of our variables.
 
 To better understand the nature of storage slots, let's use some code. The smart contract below contains one state variable, `a`, and a function that returns the storage slot of `a`.
 
@@ -140,11 +140,11 @@ Lastly, it's crucial to remember that once a smart contract is deployed, the sto
 
 For a more in-depth understanding of storage, checkout [Alchemy's storage layout guide.](https://docs.alchemy.com/docs/smart-contract-storage-layout)
 
-## <mark style="color:purple;">Opcode Basics</mark>
+## Opcode Basics
 
-To understand what opcodes are, let's consider the smart contracts below. From a semantic perspective, the language of the Solidity code is very straight forward. However, this language is extremely foreign to a computer. <mark style="color:yellow;">Since the EVM is a computer, we need to translate the Solidity code to a language that the EVM can understand by compiling the Solidity code. The EVM understands assembly code, which is a set of highly specific and concise instructions designed to carry out specific tasks. These instructions are called opcodes.</mark>
+To understand what opcodes are, let's consider the smart contracts below. From a semantic perspective, the language of the Solidity code is very straight forward. However, this language is extremely foreign to a computer. Since the EVM is a computer, we need to translate the Solidity code to a language that the EVM can understand by compiling the Solidity code. The EVM understands assembly code, which is a set of highly specific and concise instructions designed to carry out specific tasks. These instructions are called opcodes.
 
-<mark style="color:yellow;">**NOTE:**</mark> The EVM is a stack-based machine. This means that a [stack](https://en.wikipedia.org/wiki/Stack\_\(abstract\_data\_type\)) is the primary data structure used for handling low-level instructions (opcodes) in a sequential, [LIFO](../../glossary.md) order.
+**NOTE:** The EVM is a stack-based machine. This means that a [stack](https://en.wikipedia.org/wiki/Stack\_\(abstract\_data\_type\)) is the primary data structure used for handling low-level instructions (opcodes) in a sequential, [LIFO](../glossary.md) order.
 
 ```solidity
 contract TestContractOne {
@@ -184,7 +184,7 @@ For a full, comprehensive list of opcodes and their associated cost, here are tw
 * [wolflo/evm-opcodes](https://github.com/wolflo/evm-opcodes)
 * [evm.codes (interactive)](https://www.evm.codes/)
 
-## <mark style="color:purple;">Function Selectors</mark>
+## Function Selectors
 
 To understand what a function selector is, we first need to understand what a function signature is in the context of Ethereum smart contracts.
 
@@ -205,7 +205,7 @@ Now, let’s recall that there are two types of function calls that we can make 
 1. `read`: functions that only read data without making any state changes.
 2. `write`: functions that alter the contract’s state or involve ETH transfers, which requires a transaction to be published.
 
-When calling a `write` function on a smart contract, we are simply sending a transaction to the address of the smart contract. However, <mark style="color:yellow;">for the smart contract to know which function we want to interact with, the function selector and the ABI-encoded function parameter values must be included in the</mark> <mark style="color:yellow;"></mark><mark style="color:yellow;">`input`</mark> <mark style="color:yellow;"></mark><mark style="color:yellow;">field of the transaction object. If the function has no parameters, only the function selector must be included.</mark> This, of course, is abstracted away from users, but it's important to understand.
+When calling a `write` function on a smart contract, we are simply sending a transaction to the address of the smart contract. However, for the smart contract to know which function we want to interact with, the function selector and the ABI-encoded function parameter values must be included in the `input` field of the transaction object. If the function has no parameters, only the function selector must be included. This, of course, is abstracted away from users, but it's important to understand.
 
 For reference, here is an example of a transaction object.
 
@@ -235,13 +235,13 @@ contract TestContract {
 Say we want to call `doNothing(uint256 someNumber)` on this smart contract and send it 100 Wei. The following two Foundry commands are equivalent ways to do accomplish this.
 
 {% code overflow="wrap" %}
-```markup
+```
 cast send 0xc5Ae07D32067005CC098240A44828Cd7A087d4FC "doNothing(uint256)" 100 --value 0.0000000000000001ether --rpc-url <RPC_URL> --private-key <PRIVATE_KEY>
 ```
 {% endcode %}
 
 {% code overflow="wrap" %}
-```markup
+```
 cast send 0xc5Ae07D32067005CC098240A44828Cd7A087d4FC 0xdce1d5ba0000000000000000000000000000000000000000000000000000000000000064 --value 0.0000000000000001ether --rpc-url <RPC_URL> --private-key <PRIVATE_KEY>
 ```
 {% endcode %}
@@ -260,10 +260,10 @@ Both transactions resulted in the same outcome. Below are screenshots of what th
 
 Additionally, notice that the hex data in the images below is the same as the 2nd Foundry command above.
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption><p>Decoded <code>input</code> field of transaction object on Gnosisscan.</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption><p>Decoded <code>input</code> field of transaction object on Gnosisscan.</p></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption><p>Original <code>input</code> field of transaction object on Gnosisscan.</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption><p>Original <code>input</code> field of transaction object on Gnosisscan.</p></figcaption></figure>
 
-## <mark style="color:purple;">More Coming Soon...</mark>
+## More Coming Soon...
 
 Coming soon...
