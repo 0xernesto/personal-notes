@@ -100,6 +100,15 @@ The following command is the preferred way to ensure a clean, linear history. It
 git pull --rebase origin <BRANCH_NAME>
 ```
 
+### Merge Main to Local Branch
+
+When working on a local branch and new updates have been pushed to the main branch by someone else, it may make sense to get those changes reflected on your local branch. To do that, run the following commands:
+
+```
+git fetch origin
+git merge origin/main
+```
+
 ## Commits
 
 ### Revert to Previous Commit

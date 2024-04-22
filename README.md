@@ -1,6 +1,6 @@
 ---
 description: >-
-  This GitBook is meant to help me consolidate my notes and make them public for
+  This website is meant to help me consolidate my notes and make them public for
   people with similar interest.
 cover: .gitbook/assets/blueCosmos.png
 coverY: -273.695067264574
@@ -22,9 +22,7 @@ layout:
 
 # Home
 
-## Overview
-
-The majority of my interests lie within:
+I'm interested in:
 
 * Science & Technology
 * Mathematics
@@ -32,8 +30,6 @@ The majority of my interests lie within:
 * History
 * Philosophy
 * Startups
-
-I love learning a broad range of subjects and solving hard problems.
 
 ## About
 
