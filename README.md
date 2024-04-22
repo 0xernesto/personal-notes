@@ -1,7 +1,7 @@
 ---
 description: >-
   This website is meant to help me consolidate my notes and make them public for
-  people with similar interest.
+  people with similar interests.
 cover: .gitbook/assets/blueCosmos.png
 coverY: -273.695067264574
 layout:
@@ -22,7 +22,7 @@ layout:
 
 # Home
 
-I'm interested in:
+## My Interests
 
 * Science & Technology
 * Mathematics
