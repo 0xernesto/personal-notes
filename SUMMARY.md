@@ -6,8 +6,8 @@
 ## ⛓️ Ethereum
 
 * [Solidity Compiler](ethereum/solidity-compiler.md)
-* [Gas Optimization](ethereum/gas-optimization.md)
 * [Foundry](ethereum/foundry.md)
+* [Gas Optimization](ethereum/gas-optimization.md)
 
 ## 💻 Programming
 
