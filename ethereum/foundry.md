@@ -152,3 +152,17 @@ This allows you to submit transactions as if you were the owner of the account y
 ```
 cast rpc anvil_impersonateAccount <SOME_ADDRESS>
 ```
+
+## Common Errors
+
+### code 128
+
+When installing git submodules using `forge install`, the installation may fail with the error <mark style="color:red;">`git submodule exited with code 128`</mark>. This is typically due to initiating the project's git repository without using `forge init`.
+
+To get around this, do the following:
+
+```bash
+forge install $SUBMODULE_URL --no-commit
+git add -A
+git commit -m "forge install: sumboduleName"
+```

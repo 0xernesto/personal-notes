@@ -260,9 +260,9 @@ Both transactions resulted in the same outcome. Below are screenshots of what th
 
 Additionally, notice that the hex data in the images below is the same as the 2nd Foundry command above.
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption><p>Decoded <code>input</code> field of transaction object on Gnosisscan.</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption><p>Decoded <code>input</code> field of transaction object on Gnosisscan.</p></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption><p>Original <code>input</code> field of transaction object on Gnosisscan.</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption><p>Original <code>input</code> field of transaction object on Gnosisscan.</p></figcaption></figure>
 
 ## More Coming Soon...
 
