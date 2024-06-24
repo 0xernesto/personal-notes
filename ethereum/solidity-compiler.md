@@ -53,3 +53,9 @@ List exact `solc` commit (replace `x` and `y` with your version numbers):
 ```
 ~/.svm/0.x.y/solc-0.x.y --version
 ```
+
+or you can view the exact `solc` commit used by your Foundry project by going to `out/YourContract.sol/YourContract.json` and looking at `metadata.compiler.version`, as shown below:
+
+<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+
+Knowing the exact version is important verifying your deployed contract on a block explorer, like Etherscan.
