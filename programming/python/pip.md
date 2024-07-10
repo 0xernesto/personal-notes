@@ -20,24 +20,24 @@ The following is a step-by-step process for setting up a virtual environment in 
 
 1. `cd` into your project directory.
 
-```
+```bash
 cd my-project
 ```
 
 2. Create the virtual environment named `env`.
 
-```
+```bash
 python -m venv env
 ```
 
 3. Activate the virtual environment.
 
-<pre><code><strong>source env/bin/activate
+<pre class="language-bash"><code class="lang-bash"><strong>source env/bin/activate
 </strong></code></pre>
 
 4. Install dependencies.
 
-```
+```bash
 pip install <PACKAGE_NAME>
 ```
 
@@ -47,37 +47,37 @@ The following is a list of common commands used when managing a project with `pi
 
 #### Activate Virtual Environment
 
-```
+```bash
 source env/bin/activate
 ```
 
 #### Deactivate Virtual Environment
 
-```
+```bash
 deactivate
 ```
 
 #### Uninstall a Package
 
-```
+```bash
 pip uinstall <PACKAGE_NAME>
 ```
 
 #### List Installed Packages
 
-```
+```bash
 pip freeze
 ```
 
 #### Create a requirements.txt File
 
-```
+```bash
 pip freeze > requirements.txt
 ```
 
 #### Install Packages from a requirements.txt File
 
-```
+```bash
 pip install -r requirements.txt
 ```
 
@@ -91,13 +91,13 @@ The following are common pitfalls when working with `pip` and their solutions.
 
 To uninstall packages from your machine using the requirements.txt file in your project, make sure your virtual environment is **not** activated and run the following command:
 
-```
+```bash
 pip uninstall -r requirements.txt
 ```
 
 To uninstall all global Python packages from your machine, make sure your virtual environment is **not** activated and run the following command:
 
-```
+```bash
 pip freeze | xargs pip uninstall -y
 ```
 
@@ -109,7 +109,7 @@ pip freeze | xargs pip uninstall -y
 
 To prevent dependency conflicts, it is recommended to create a `requirements.txt` file with pinned package versions. The following command is a way to automatically create a `requirements.txt` file from the packages installed in your virtual environment:
 
-```
+```bash
 pip freeze > requirements.txt
 ```
 
@@ -123,7 +123,7 @@ Yes. To require a virtual environment to be active when running `pip` commands, 
 
 Run the following command to set `require-virtualenv` to `True`.
 
-```
+```bash
 pip config set global.require-virtualenv True
 ```
 
@@ -136,7 +136,7 @@ require-virtualenv = True
 
 If you ever need to get around this requirement, you can either temporarily set `require-virtualenv` to `False`, or prepend your `pip` commands as follows:
 
-```
+```bash
 PIP_REQUIRE_VIRTUALENV=false pip install <PACKAGE_NAME>
 ```
 

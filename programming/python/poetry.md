@@ -17,13 +17,13 @@ Note that the instructions below are for MacOS, but the core Poetry commands are
 1. Go to `~/Applications/Python` in a new Finder window and click `Install Certificates.command`.
 2. Open up a terminal in the root directory `~` and run the following curl command to install poetry.
 
-```
+```bash
 curl -sSL https://install.python-poetry.org | python3 -
 ```
 
 3. Go to your bash profile in  `~/.bash_profile`, add the following line, and save the file.
 
-```
+```bash
 export PATH="/Users/<INSERT_USER_NAME>/.local/bin:${PATH}"
 ```
 
@@ -31,7 +31,7 @@ export PATH="/Users/<INSERT_USER_NAME>/.local/bin:${PATH}"
 5. Run `poetry config --list` in the terminal to see a list of `poetry` settings.
 6. To optionally store virtual environments in project directories, you can modify the setting: `virtualenvs.in-project`. This is set to `null` by default, but we  can change it to `true` with the command below.
 
-```
+```bash
 poetry config virtualenvs.in-project true
 ```
 
@@ -41,19 +41,19 @@ poetry config virtualenvs.in-project true
 
 1. To start  new project, run
 
-```
+```bash
 poetry new <PROJECT_NAME>
 ```
 
 2. If adding poetry to an existing project, `cd` into the project’s root directory and run&#x20;
 
-```
+```bash
 poetry init
 ```
 
 3. To install a package, run
 
-```
+```bash
 poetry add <PACKAGE_NAME>
 ```
 
@@ -61,7 +61,7 @@ Poetry will automatically create a virtual environment, but it won't activate it
 
 4. To run scripts using the virtual environment created by poetry, we need to prepend commands with `poetry run`.
 
-```
+```bash
 poetry run <COMMAND>
 
 ## Some Examples ##
@@ -73,7 +73,7 @@ poetry run isort --check app/ tests/
 6. To see a list of installed dependencies, run `poetry show` or `poetry show --tree`.
 7. To uninstall a package, run&#x20;
 
-```
+```bash
 poetry remove <PACKAGE_NAME>
 ```
 

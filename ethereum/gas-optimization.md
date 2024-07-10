@@ -235,13 +235,13 @@ contract TestContract {
 Say we want to call `doNothing(uint256 someNumber)` on this smart contract and send it 100 Wei. The following two Foundry commands are equivalent ways to do accomplish this.
 
 {% code overflow="wrap" %}
-```
+```bash
 cast send 0xc5Ae07D32067005CC098240A44828Cd7A087d4FC "doNothing(uint256)" 100 --value 0.0000000000000001ether --rpc-url <RPC_URL> --private-key <PRIVATE_KEY>
 ```
 {% endcode %}
 
 {% code overflow="wrap" %}
-```
+```bash
 cast send 0xc5Ae07D32067005CC098240A44828Cd7A087d4FC 0xdce1d5ba0000000000000000000000000000000000000000000000000000000000000064 --value 0.0000000000000001ether --rpc-url <RPC_URL> --private-key <PRIVATE_KEY>
 ```
 {% endcode %}
