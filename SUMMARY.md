@@ -3,11 +3,12 @@
 * [Home](README.md)
 * [Glossary](glossary.md)
 
-## ⛓️ Ethereum
+## ⛓️ Blockchain
 
-* [Solidity Compiler](ethereum/solidity-compiler.md)
-* [Foundry](ethereum/foundry.md)
-* [Gas Optimization](ethereum/gas-optimization.md)
+* [Solidity Compiler](blockchain/solidity-compiler.md)
+* [Foundry](blockchain/foundry.md)
+* [Gas Optimization](blockchain/gas-optimization.md)
+* [Resources](blockchain/resources.md)
 
 ## 💻 Programming
 
