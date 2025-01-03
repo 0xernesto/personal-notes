@@ -30,6 +30,7 @@ layout:
 * History
 * Philosophy
 * Startups
+* Design
 
 ## About
 

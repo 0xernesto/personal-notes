@@ -117,13 +117,19 @@ cast send <SOME_ADDRESS> --value <AMOUNT> --private-key <PRIVATE_KEY>
 ```
 {% endcode %}
 
-### Get the Keccak-256 Hash of a UTF-8 String
+### Convert a UTF-8 String to Hexadecimal
 
 ```bash
 cast from-utf8 "hello world"
 ```
 
-### Generate Calldata from a Function Selector and Argument Values
+### Get Keccak-256 Hash of a custom Smart Contract Error
+
+```bash
+cast keccak "InsufficientFunds()" | cut -c1-10
+```
+
+### Generate the ABI-Encoded Calldata for a Smart Contract Function Call
 
 {% code overflow="wrap" %}
 ```bash

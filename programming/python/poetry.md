@@ -42,7 +42,7 @@ poetry config virtualenvs.in-project true
 1. To start  new project, run
 
 ```bash
-poetry new <PROJECT_NAME>
+poetry new <project_name>
 ```
 
 2. If adding poetry to an existing project, `cd` into the project’s root directory and run&#x20;
@@ -51,34 +51,24 @@ poetry new <PROJECT_NAME>
 poetry init
 ```
 
-3. To install a package, run
+3. To activate the virtual environment, run
 
 ```bash
-poetry add <PACKAGE_NAME>
+poetry shell
 ```
 
-Poetry will automatically create a virtual environment, but it won't activate it automatically
+## Workflow
 
-4. To run scripts using the virtual environment created by poetry, we need to prepend commands with `poetry run`.
+Once the project is set up with Poetry, here are the common commands one must do on a regular basis:
 
-```bash
-poetry run <COMMAND>
+Run `poetry shell` to activate the virtual environment.
 
-## Some Examples ##
-poetry run python script.py
-poetry run isort --check app/ tests/
-```
+Run `poetry install` to sync your virtual environment with the latest dependencies.
 
-5. If you want to run commands within a poetry virtual environment without prepending commands with `poetry run`, the virtual environment must be activated in the terminal with `poetry shell`, or you can create an alias for the `poetry run`.
-6. To see a list of installed dependencies, run `poetry show` or `poetry show --tree`.
-7. To uninstall a package, run&#x20;
+Run `poetry run <script_name>` to run a script defined in `pyproject.toml`.
 
-```bash
-poetry remove <PACKAGE_NAME>
-```
+Run `poetry add <package_name>` to install a package.
 
-8. Run `poetry install` to sync your virtual environment with the dependencies in `pyproject.toml`.
+Run `poetry remove <package_name>` to uninstall a package.
 
-## Summary
-
-For every directory that must have its own virtual environment, a `pyproject.toml` should be created within that directory. A `.venv` directory is created if `virtualenvs.in-project` is set to true. A `poetry.lock` file is created upon package installation in the same directory as the `pyproject.toml` file. To create the virtual environment, installing a package will automatically create one (if one does not exist).
+Run `poetry show` or `poetry show --tree` to see al ist of installed dependencies.

@@ -44,6 +44,12 @@ export VARIABLE_NAME=<SOME_VALUE>
 echo $VARIABLE_NAME
 ```
 
+### Open a Directory in Finder (Mac)
+
+```bash
+open <DIR_NAME> 
+```
+
 ### Display an Entire File
 
 ```bash
