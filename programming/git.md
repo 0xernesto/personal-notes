@@ -136,6 +136,12 @@ git commit --amend --no-edit
 git push -f origin <BRANCH_NAME>
 ```
 
+### Restore File to a Specific Commit
+
+```bash
+git checkout <COMMIT_HASH> -- <FILE_PATH>
+```
+
 ## Accounts
 
 ### Display Username and Email in Current Repo
